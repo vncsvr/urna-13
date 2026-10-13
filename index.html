@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Urna de Mentirinha</title>
+<meta name="description" content="Brincadeira: treine o seu 13. Não é votação, não conta voto.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="urna" aria-label="Urna de brincadeira">
+  <div class="topo-urna"><span class="placa">URNA DE MENTIRINHA</span></div>
+  <div class="corpo">
+    <section class="tela" id="tela" aria-live="polite">
+      <div class="tela-voto" id="telaVoto">
+        <p class="rotulo">SEU VOTO PARA</p>
+        <h1 class="cargo">PRESIDENTE</h1>
+        <div class="linha-num">
+          <span class="lbl">Número:</span>
+          <span class="digito" id="d0"></span><span class="digito" id="d1"></span>
+        </div>
+        <div class="candidato" id="candidato" hidden>
+          <p><span class="lbl">Nome:</span> <b>LULA</b></p>
+          <p><span class="lbl">Partido:</span> PT</p>
+          <div class="retrato" aria-label="Caricatura desenhada por código">
+            <svg viewBox="0 0 120 140" role="img" aria-hidden="true">
+              <rect width="120" height="140" fill="#dfe8f1"/>
+              <path d="M10 140c4-26 22-36 50-36s46 10 50 36z" fill="#1d2b4a"/>
+              <path d="M48 104l12 16 12-16z" fill="#fff"/>
+              <path d="M57 108h6l2 26h-10z" fill="#c62828"/>
+              <ellipse cx="60" cy="62" rx="34" ry="40" fill="#e9b48e"/>
+              <ellipse cx="25" cy="64" rx="6" ry="9" fill="#e0a57d"/>
+              <ellipse cx="95" cy="64" rx="6" ry="9" fill="#e0a57d"/>
+              <path d="M26 52c0-22 14-32 34-32s34 10 34 32c-4-8-8-12-12-13-6-8-38-8-44 0-4 1-8 5-12 13z" fill="#ececec"/>
+              <path d="M28 70c0 30 14 42 32 42s32-12 32-42c-4 10-10 14-16 14-6-4-26-4-32 0-6 0-12-4-16-14z" fill="#d9d9d9"/>
+              <path d="M42 80c8-5 28-5 36 0-6 4-30 4-36 0z" fill="#bdbdbd"/>
+              <path d="M48 87q12 9 24 0" stroke="#8a4b3a" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M38 50q8-5 16 0M66 50q8-5 16 0" stroke="#9e9e9e" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <ellipse cx="46" cy="59" rx="4" ry="4.5" fill="#2b2b2b"/>
+              <ellipse cx="74" cy="59" rx="4" ry="4.5" fill="#2b2b2b"/>
+              <circle cx="47.5" cy="57.5" r="1.3" fill="#fff"/><circle cx="75.5" cy="57.5" r="1.3" fill="#fff"/>
+              <path d="M60 60q-5 12 0 14q5 0 6-2" stroke="#b9805e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <circle cx="34" cy="72" r="6" fill="#f08a7a" opacity=".35"/><circle cx="86" cy="72" r="6" fill="#f08a7a" opacity=".35"/>
+            </svg>
+            <span class="legenda-retrato">PRESIDENTE</span>
+          </div>
+        </div>
+        <div class="aviso-nulo" id="avisoNulo" hidden>
+          <p class="grande">NÚMERO ERRADO</p>
+          <p class="grande pisca">VOTO NULO</p>
+          <p>...tem certeza? 😅 Treina de novo</p>
+        </div>
+        <div class="instrucoes" id="instrucoes" hidden>
+          <p>Aperte a tecla:</p>
+          <p><b class="v">CONFIRMA</b> para CONFIRMAR este voto</p>
+          <p><b class="l">CORRIGE</b> para REINICIAR este voto</p>
+        </div>
+      </div>
+
+      <div class="tela-msg" id="telaBranco" hidden>
+        <p class="grande">VOTO EM BRANCO</p>
+        <p id="piadaBranco"></p>
+      </div>
+
+      <div class="tela-msg tela-fim" id="telaFim" hidden>
+        <p class="fim">FIM</p>
+        <p class="frase" id="frase"></p>
+        <p class="contador" id="contador"></p>
+        <p class="lembrete">Dia 25/10, 2º turno. Leve documento com foto ou e-Título.</p>
+        <div class="acoes">
+          <button type="button" id="denovo">Votar de novo</button>
+          <button type="button" id="compartilhar">Compartilhar</button>
+        </div>
+        <p class="copiado" id="copiado" hidden>Texto copiado!</p>
+      </div>
+    </section>
+
+    <section class="teclado" aria-label="Teclado">
+      <div class="numeros">
+        <button type="button" class="tecla" data-d="1">1</button>
+        <button type="button" class="tecla" data-d="2">2</button>
+        <button type="button" class="tecla" data-d="3">3</button>
+        <button type="button" class="tecla" data-d="4">4</button>
+        <button type="button" class="tecla" data-d="5">5</button>
+        <button type="button" class="tecla" data-d="6">6</button>
+        <button type="button" class="tecla" data-d="7">7</button>
+        <button type="button" class="tecla" data-d="8">8</button>
+        <button type="button" class="tecla" data-d="9">9</button>
+        <button type="button" class="tecla zero" data-d="0">0</button>
+      </div>
+      <div class="especiais">
+        <button type="button" class="esp branco" id="btBranco">BRANCO</button>
+        <button type="button" class="esp corrige" id="btCorrige">CORRIGE</button>
+        <button type="button" class="esp confirma" id="btConfirma">CONFIRMA</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div id="efeitos" aria-hidden="true"></div>
+
+<footer class="faixa" role="note">
+  Brincadeira. Isto NÃO é votação, não conta voto e não é da Justiça Eleitoral nem material oficial de campanha.
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
